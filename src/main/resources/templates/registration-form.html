@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration Form</title>
+    <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
+    />
+
+    <style>
+        h2{text-align: center;
+        margin-top: 35px}
+        .container{align-items: center; margin: 0 auto}
+        .error{color: red}
+        form{display: block; width: 900px; margin: 0 auto; align-content: space-evenly}
+        .row{display: flex; width: 100%; align-content: space-evenly}
+        .row-2{display: inline-block;  margin-bottom: 30px}
+        label{white-space: nowrap; width: 30%}
+        input[type=text], input[type=date], input[type=email]{width: 490px;}
+        .text-2 input[type=text]{width: auto !important;}
+        textarea{width: 100%}
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Event registration form</h2>
+    <form th:action="@{/processForm}" th:object="${personalDetails}" method="POST">
+        <h3>Personal Details</h3>
+        <div class="row">
+            <label>Full Name: </label>
+            <input type="text" th:field="*{fullName}">
+            <span th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}" class="error"/>
+        </div>
+
+        <div class="row">
+            <label>Email: </label>
+            <input type="email" th:field="*{email}">
+            <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="error"/>
+        </div>
+
+        <div class="row">
+            <label>Phone Number: </label>
+            <input type="text" th:field="*{phoneNumber}">
+            <span th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}" class="error"/>
+        </div>
+
+        <div class="row">
+            <label>Date of Birth: </label>
+            <input type="date" th:field="*{birthdate}">
+            <span th:if="${#fields.hasErrors('birthdate')}" th:errors="*{birthdate}" class="error"/>
+        </div>
+
+        <h3>Address</h3>
+        <div class="row">
+            <label>Street: </label>
+            <input type="text" th:field="${personalDetails.address.street}">
+            <span th:if="${#fields.hasErrors('address.street')}" th:errors="${personalDetails.address.street}" class="error"/>
+        </div>
+
+        <div class="row">
+            <label>City: </label>
+            <input type="text" th:field="${personalDetails.address.city}">
+            <span th:if="${#fields.hasErrors('address.city')}" th:errors="${personalDetails.address.city}" class="error"/>
+        </div>
+
+        <div class="row">
+            <label>State: </label>
+            <input type="text" th:field="${personalDetails.address.state}">
+            <span th:if="${#fields.hasErrors('address.state')}" th:errors="${personalDetails.address.state}" class="error"/>
+        </div>
+
+        <div class="row">
+            <label>ZIP: </label>
+            <input type="text" th:field="${personalDetails.address.zip}">
+            <span th:if="${#fields.hasErrors('address.zip')}" th:errors="${personalDetails.address.zip}" class="error"/>
+        </div>
+
+        <h3>Dietary Preferences</h3>
+        <div class="row-2">
+            <label>Select your options: </label>
+            <input type="checkbox" th:field="*{dietaryPreferences}" th:value="Vegetarian">Vegetarian</input>
+            <input type="checkbox" th:field="*{dietaryPreferences}" th:value="Vegan">Vegan</input>
+            <input type="checkbox" th:field="*{dietaryPreferences}" th:value="Gluten-Free">Gluten Free</input>
+            <input type="text" class="text-2" th:field="*{dietaryPreferences}" th:value="Other" placeholder="Other">
+        </div>
+
+        <h3>Sessions</h3>
+        <div class="row-2">
+            <label>Select your interests: </label>
+            <input type="checkbox" th:field="*{session}" th:value="Java">Java</input>
+            <input type="checkbox" th:field="*{session}" th:value="Python">Python</input>
+            <input type="checkbox" th:field="*{session}" th:value="Databases">Databases</input>
+            <input type="checkbox" th:field="*{session}" th:value="SpringFramework">Spring Framework</input>
+            <input type="checkbox" th:field="*{session}" th:value="RESTAPI">REST Api</input>
+            <input type="checkbox" th:field="*{session}" th:value="CloudServices">Cloud Services</input>
+        </div>
+
+        <div class="row-2">
+            <label>Additional Information: </label>
+            <textarea rows="15" cols="15" th:field="*{additionalInfo}"></textarea>
+        </div>
+        <button>Register</button>
+    </form>
+</div>
+</body>
+</html>

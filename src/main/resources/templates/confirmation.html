@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirmation</title>
+    <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
+    />
+
+    <style>
+        .container{align-items: center; margin: 0 auto}
+    .box{display: flex}
+    label{margin-right: 20px}
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Registration Confirmation</h2>
+    <p>Your registration was successfully completed!</p>
+
+    <h3>Personal Details</h3>
+    <div class="box">
+        <label>Full Name: </label>
+        <span th:text="${personalDetails.fullName}"/>
+    </div>
+
+    <div class="box">
+        <label>Email: </label>
+        <span th:text="${personalDetails.email}"/>
+    </div>
+
+    <div class="box">
+        <label>Phone Number: </label>
+        <span th:text="${personalDetails.phoneNumber}"/>
+    </div>
+
+    <h3>Address</h3>
+    <div class="box">
+        <label>Street: </label>
+        <span th:text="${personalDetails.address.street}"/>
+    </div>
+
+    <div class="box">
+        <label>City: </label>
+        <span th:text="${personalDetails.address.street}"/>
+    </div>
+
+    <div class="box">
+        <label>State: </label>
+        <span th:text="${personalDetails.address.state}"/>
+    </div>
+
+    <div class="box">
+        <label>ZIP: </label>
+        <span th:text="${personalDetails.address.zip}"/>
+    </div>
+
+    <h3>Sessions</h3>
+    <div class="box">
+        <label>Dietary Preference: </label>
+        <span th:text="${personalDetails.dietaryPreferences}"/>
+    </div>
+
+    <div class="box">
+        <label>Your interests: </label>
+        <span th:text="${personalDetails.session}"/>
+    </div>
+
+    <div class="box">
+        <label>Additional Information: </label>
+        <span th:text="${personalDetails.additionalInfo}"/>
+    </div>
+</div>
+</body>
+</html>
